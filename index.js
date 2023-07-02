@@ -11,6 +11,8 @@ const db = mysql.createConnection({// Data information to make the conection.
     database:"dailyaccbd",
 })
 
+//pruEBA QUE NO VOY A JODER EL CODIGO
+
 // If there is a auth problem
 
 // ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'R@dioactiva123';
