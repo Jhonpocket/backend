@@ -41,7 +41,7 @@ app.post ("/daily", (req,res) =>{
 
     db.query(q, [values],(err,data)=>{
         if(err) return res.json(err)
-        return res.json("Book has been created successfullly.")
+        return res.json("User has been created successfullly.")
     })
 })
 // delete information of the db.
@@ -51,7 +51,7 @@ app.delete("/daily/:id", (req,res)=>{
 
     db.query(q, [dailyId], (err, data) =>{
         if(err) return res.json(err)
-        return res.json("Book has been deleted successfullly.")
+        return res.json("User has been deleted successfullly.")
     })
 })
 // allows to update the information on the db.
@@ -68,7 +68,7 @@ app.put("/daily/:id", (req,res)=>{
 
     db.query(q, [...values,dailyId], (err, data) =>{
         if(err) return res.json(err)
-        return res.json("Book has been updated successfullly.")
+        return res.json("User has been updated successfullly.")
     })
 })
 // port of conexion.
