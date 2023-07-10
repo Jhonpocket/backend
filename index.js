@@ -7,11 +7,9 @@ const app = express()// conect the data base with the api
 const db = mysql.createConnection({// Data information to make the conection.
     host:"localhost",
     user:"root",
-    password:"R@dioactiva123",
+    password:"root123",
     database:"dailyaccbd",
 })
-
-//pruEBA QUE NO VOY A JODER EL CODIGO
 
 // If there is a auth problem
 
