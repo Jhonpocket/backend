@@ -1,5 +1,5 @@
-import express from "express"
-import mysql from "mysql"
+import express from "express"//
+import mysql from "mysql" // Allows the use of MySQL DB
 import cors from "cors"// allows to connect the api with reac
 
 const app = express()// conect the data base with the api
@@ -27,7 +27,7 @@ app.use(cors())
 // get of the api, allows to validate information
 
 app.get("/", (req,res)=>{
-    res.json("hello this is the backend")
+    res.json("Connected to backend!")
 })
 
 app.get("/daily", (req,res)=>{
@@ -37,6 +37,16 @@ app.get("/daily", (req,res)=>{
         return res.json(data)
     })
 })
+// get api for registros
+
+app.get("/registros", (req,res)=>{
+    const q = "SELECT * FROM registros"
+    db.query(q,(err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
 //post of the appi, allows to create information on the db.
 
 app.post ("/daily", (req,res) =>{
@@ -66,17 +76,34 @@ app.post ("/daily", (req,res) =>{
         })
     }
     
-})  
+})
+
+//allows to create a registry on the db.
+
+app.post ("/registros", (req,res) =>{
+    const q = "INSERT INTO registros (`valor`,`tipo`,`fecha`,`comentario`) VALUES (?)"
+    const values = [
+     req.body.valor,
+     req.body.tipo,
+     req.body.fecha,
+     req.body.comentario,   
+    ]
+
+    db.query(q, [values],(err,data)=>{
+        if(err) return res.json(err)
+        return res.json("The registry has been created successfullly.")
+    })
+})
 
 // delete information of the db.
 
-app.delete("/daily/:id", (req,res)=>{
-    const dailyId = req.params.id;
-    const q = "DELETE FROM daily WHERE id = ?";
+app.delete("/registros/:idReg", (req,res)=>{
+    const regId = req.params.idReg;
+    const q = "DELETE FROM registros WHERE idReg = ?";
 
-    db.query(q, [dailyId], (err, data) =>{
+    db.query(q, [regId], (err, data) =>{
         if(err) return res.json(err)
-        return res.json("User has been deleted successfullly.")
+        return res.json("The entry has been deleted successfullly.")
     })
 })
 // allows to update the information on the db.
